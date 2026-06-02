@@ -68,18 +68,21 @@ struct Colors colors[] = {
 // I improve my tree deleting some backwards
 void drawFractalTwo (Turtle * t , float side , unsigned int depth)  {
   if (depth == 0 ) return ;
+
+  turtleSetColor(t, colors[depth].r, colors[depth].g, colors[depth].b);
   turtleForward(t, side);
 
   turtleLeft (t , 45);
   drawFractalTwo(t, side * 0.7 , depth-1 );
 
   turtleRight(t, 45);
-  drawFractalTwo(t, side * 0.4 , depth-1 );
+  drawFractalTwo(t, side * 0.7 , depth-1 );
 
   turtleRight(t, 45);
-  drawFractalTwo(t, side * 0.5 , depth-1 );
+  drawFractalTwo(t, side * 0.7 , depth-1 );
 
   turtleLeft(t, 45);
+  turtleSetColor(t, colors[depth].r, colors[depth].g, colors[depth].b);
   turtleBackward(t, side);
 }
 
