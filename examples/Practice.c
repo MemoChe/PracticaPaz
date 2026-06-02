@@ -41,28 +41,17 @@ void drawFractalTwo (Turtle * t , float side , unsigned int depth)  {
   turtleForward(t, side);
 
   turtleLeft (t , 45);
-  drawFractalTwo(t, side * 0.7 , depth - 1);
+  drawFractalTwo(t, side * 0.7 , depth-1 );
 
-  turtleRight(t, 90);
-  drawFractalTwo(t, side * 0.7 , depth - 1);
+  turtleRight(t, 45);
+  drawFractalTwo(t, side * 0.7 , depth-1 );
+
+  turtleRight(t, 45);
+  drawFractalTwo(t, side * 0.7 , depth-1 );
 
   turtleLeft(t, 45);
   turtleBackward(t, side);
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -113,7 +102,7 @@ int main(void) {
   turtlePenDown(t);
   turtleLeft(t, 90);
   //fractalTree(t, 100, 2);
-  drawFractalTwo(t, side, 6);
+  drawFractalTwo(t, side, 3);
   turtleAppRun(app);
   turtleAppDestroy(app);
   return 0;
