@@ -202,7 +202,7 @@ int main(void){
   // turtleGoTo(t, width/2, height - 100);
   // turtlePenUp(t);
   //treeRecursive(width/2, height - 100, -135, -45, 100, t, 8);
-  //drawFractalTriangle(t, 250, 400, 200, 6);
+  drawFractalTriangle(t, 250, 400, 200, 6);
   turtleAppRun(app);
   turtleAppDestroy(app);
 
