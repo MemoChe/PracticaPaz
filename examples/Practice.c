@@ -33,21 +33,51 @@ void drawFractalTree (Turtle * t, float side, int depth) {
   turtleBackward(t, side);
 }
 
+struct Colors {
+  char r ;
+  char g ;
+  char b;
+};
+
+
+
+struct Colors colors[] = {
+     {255, 0,   0},     // red
+     {255, 128, 0},     // orange
+     {255, 255, 0},     // yellow
+     {128, 255, 0},     // lime
+     {0,   255, 0},     // green
+     {0,   255, 128},   // spring green
+     {0,   255, 255},   // cyan
+     {0,   128, 255},   // azure
+     {0,   0,   255},   // blue
+     {128, 0,   255},   // violet
+     {255, 0,   255},   // magenta
+     {255, 0,   128},   // pink
+     {255, 255, 255},   // white
+     {192, 192, 192},   // light gray
+     {128, 128, 128},   // gray
+     {64,  64,  64},     // dark gray
+     {0,   0,   0},     // black
+     {128, 64,  0},     // brown
+     {0,   128, 128},   // teal
+     {128, 0,   0},     // maroon
+ };
+
 
 // I improve my tree deleting some backwards
 void drawFractalTwo (Turtle * t , float side , unsigned int depth)  {
   if (depth == 0 ) return ;
-
   turtleForward(t, side);
 
   turtleLeft (t , 45);
   drawFractalTwo(t, side * 0.7 , depth-1 );
 
   turtleRight(t, 45);
-  drawFractalTwo(t, side * 0.7 , depth-1 );
+  drawFractalTwo(t, side * 0.4 , depth-1 );
 
   turtleRight(t, 45);
-  drawFractalTwo(t, side * 0.7 , depth-1 );
+  drawFractalTwo(t, side * 0.5 , depth-1 );
 
   turtleLeft(t, 45);
   turtleBackward(t, side);
