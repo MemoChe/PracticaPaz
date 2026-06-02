@@ -1,9 +1,11 @@
 #include "../turtlec.h"
+#include <CSFML/Graphics/Color.h>
 #include <CSFML/System/Vector2.h>
 #include <CSFML/Window/Event.h>
 #include <math.h>
 #include <stdbool.h>
 #include <stdio.h>
+#include <stdlib.h>
 
 // my own algorithm of a tree with two tree or n leaves
 void drawFractalTree (Turtle * t, float side, int depth) {
@@ -34,9 +36,9 @@ void drawFractalTree (Turtle * t, float side, int depth) {
 }
 
 struct Colors {
-  char r ;
-  char g ;
-  char b;
+  unsigned char r ;
+  unsigned char g ;
+  unsigned char b;
 };
 
 
@@ -104,17 +106,19 @@ void fractalTree ( Turtle * turtle , float length , int depth ) {
 }
 
 
-void levy ( Turtle * turtle , float length , int depth ) {
+void levy ( Turtle * turtle , float length , int depth , int index) {
   if( depth == 0) {
     turtleForward ( turtle , length ) ;
     return ;
   }
 
   turtleLeft ( turtle , 45) ;
-  levy ( turtle , length / sqrt (2) , depth - 1) ;
+  turtleSetColor(turtle, colors[rand()%20].r, colors[rand()%20].g, colors[rand()%20].b);
+  levy ( turtle , length / sqrt (2) , depth - 1, index + 1) ;
 
   turtleRight ( turtle , 90) ;
-  levy ( turtle , length / sqrt (2) , depth - 1) ;
+  turtleSetColor(turtle, colors[rand()%20].r, colors[rand()%20].g, colors[rand()%20].b);
+  levy ( turtle , length / sqrt (2) , depth - 1, index + 1) ;
 
   turtleLeft ( turtle , 45) ;
 }
@@ -123,19 +127,34 @@ int main(void) {
   float width = 600;
   float height = 600;
   TurtleApp *app = turtleAppCreate(width, height, "Test Line");
-  float velocity = 100;
+  float velocity = 1;
   if(app == NULL)
     return 1;
   Turtle *t = turtleAppGetTurtle(app);
   turtleSetSpeed(t, velocity);
   int n = width / 100;
   int side = width / n;
-  //turtlePenUp(t);
-  //turtleGoTo(t, width/2, height);
+  turtlePenUp(t);
+  turtleGoTo(t, 10, height/2);
   turtlePenDown(t);
-  turtleLeft(t, 90);
-  //fractalTree(t, 100, 2);
-  drawFractalTwo(t, side, 3);
+  //turtleLeft(t, 90);
+  //drawFractalTwo(t, side, 3);
+
+  levy(t, side, 0,0);
+  turtlePenUp(t);
+  turtleGoTo(t, 10, height/2+60);
+  turtlePenDown(t);
+
+  levy(t, side, 1,0);
+
+  turtlePenUp(t);
+  turtleGoTo(t, 10, height/2+120);
+  turtlePenDown(t);
+  levy(t, side, 2,0);
+  turtlePenUp(t);
+  turtleGoTo(t, 30, height/2+200);
+  turtlePenDown(t);
+  levy(t, side, 3,0);
   turtleAppRun(app);
   turtleAppDestroy(app);
   return 0;
